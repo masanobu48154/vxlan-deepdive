@@ -104,7 +104,7 @@ class Cml2:
         s = requests.session()
         res_put_start = s.put(start_url, headers=self.headers_br, verify=False)
         print(f"Lab started !! Lab ID = {lab_id}")
-        return res_put_start.json()
+        # return res_put_start.json()
 
     def get_labid(self):
         """
