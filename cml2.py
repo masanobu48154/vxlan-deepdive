@@ -133,10 +133,10 @@ class Cml2:
             stop_url = f"https://{self.host}/api/v0/labs/{lab}/stop"
             s = requests.session()
             res_put_stop = s.put(stop_url, headers=self.headers_br, verify=False)
-            time.sleep(20)
-            print(res_put_stop)
-            stop_labs_dic[lab] = res_put_stop.json()
-            print(f"Lab stopped !! Lab ID = {lab}")
+            # time.sleep(20)
+            # print(res_put_stop)
+            # stop_labs_dic[lab] = res_put_stop.json()
+            # print(f"Lab stopped !! Lab ID = {lab}")
         return stop_labs_dic
 
     def wipe_labs(self):
