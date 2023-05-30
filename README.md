@@ -25,8 +25,6 @@ Connect to Cisco Modeling Labs referring to [here](https://developer.cisco.com/d
 
 You can build your lab by running cml2.py from DevBox.
 
-Store your lab configuration files in the cmlyaml directory.
-
 Log in to DevBox.
 
 ```shell
@@ -57,6 +55,8 @@ Go to the iosxr-nc-ned directory and set the CML2 username and password as envir
 (py3venv) [developer@devbox iosxr-nc-ned]$ export CML_PASSWORD={ CML PASSWORD }
 (py3venv) [developer@devbox iosxr-nc-ned]$ export CML_LAB={ Your cmlyaml file }
 ```
+
+Store your lab configuration files in the cmlyaml directory.
 
 Run cml2.py.
 
