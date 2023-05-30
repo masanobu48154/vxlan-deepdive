@@ -82,7 +82,7 @@ class Cml2:
             Imported lab ID
         """
         print(f"Importing lab")
-        create_urlv1 = f"https://{self.host}/api/v0/import?title=nso_lab"
+        create_urlv1 = f"https://{self.host}/api/v0/import?title=vxlan_initial"
         with open(self.yaml_path, 'rb') as f:
             virl_data = f.read()
         s = requests.session()
@@ -104,7 +104,6 @@ class Cml2:
         s = requests.session()
         res_put_start = s.put(start_url, headers=self.headers_br, verify=False)
         print(f"Lab started !! Lab ID = {lab_id}")
-        # return res_put_start.json()
 
     def get_labid(self):
         """
@@ -127,17 +126,12 @@ class Cml2:
         dictionary
             Key = Lab ID, Value = API Status
         """
-        stop_labs_dic = {}
         for lab in self.get_labid():
             print(lab)
             stop_url = f"https://{self.host}/api/v0/labs/{lab}/stop"
             s = requests.session()
-            res_put_stop = s.put(stop_url, headers=self.headers_br, verify=False)
+            s.put(stop_url, headers=self.headers_br, verify=False)
             time.sleep(20)
-            # print(res_put_stop)
-            # stop_labs_dic[lab] = res_put_stop.json()
-            # print(f"Lab stopped !! Lab ID = {lab}")
-        # return stop_labs_dic
 
     def wipe_labs(self):
         """
@@ -147,16 +141,12 @@ class Cml2:
         dictionary
             Key = Lab ID, Value = API Status
         """
-        wipe_labs_dic = {}
         self.stop_labs()
         for lab in self.get_labid():
             wipe_url = f"https://{self.host}/api/v0/labs/{lab}/wipe?force=true"
             s = requests.session()
-            res_put_wipe = s.put(wipe_url, headers=self.headers_br, verify=False)
+            s.put(wipe_url, headers=self.headers_br, verify=False)
             time.sleep(5)
-            # wipe_labs_dic[lab] = res_put_wipe.json()
-            # print(f"Lab wiped !! Lab ID = {lab}")
-        # return wipe_labs_dic
 
     def delete_labs(self):
         """
