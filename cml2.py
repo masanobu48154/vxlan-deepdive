@@ -19,7 +19,7 @@ class Cml2:
         2. Execute delete_labs function and start_lab.
     """
 
-    def __init__(self, host, uname, passwd):
+    def __init__(self, host, uname, passwd, lab):
         """
         Parameters
         ----------
@@ -31,8 +31,9 @@ class Cml2:
             "password": passwd
         }
         self.host = host
+        self.lab = lab
         self.login_data = json.dumps(login_data_dic)
-        self.yaml_path = f'{os.path.dirname(os.path.abspath(__file__))}/cmlyaml/vxlan_lab(underlay).yaml'
+        self.yaml_path = f'{os.path.dirname(os.path.abspath(__file__))}/cmlyaml/{self.lab}'
         self.headers = {
             "Content-type": "application/x-www-form-urlencoded",
             "accept": "application/json"
@@ -196,9 +197,10 @@ class Cml2:
 if __name__ == '__main__':
 
     host = "10.10.20.161"
-    uname = "developer"
-    passwd = "C1sco12345"
-    ob = Cml2(host, uname, passwd)
+    uname = os.environ['CML_USERNAME']
+    passwd = os.environ['CML_PASSWORD']
+    lab = os.environ['CML_LAB']
+    ob = Cml2(host, uname, passwd, lab)
     ob.delete_labs()
     ob.start_lab()
 
