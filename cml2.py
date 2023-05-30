@@ -129,6 +129,7 @@ class Cml2:
         """
         stop_labs_dic = {}
         for lab in self.get_labid():
+            print(lab)
             stop_url = f"https://{self.host}/api/v0/labs/{lab}/stop"
             s = requests.session()
             res_put_stop = s.put(stop_url, headers=self.headers_br, verify=False)
